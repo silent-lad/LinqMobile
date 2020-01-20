@@ -1,3 +1,7 @@
+@import url("https://fonts.googleapis.com/css?family=Lato&display=swap");
+body {
+  font-family: "Lato", sans-serif;
+}
 ul {
   padding: 0px 0px 0px 0px !important;
   margin-bottom: 50px;
@@ -19,10 +23,10 @@ ul {
 
 .step {
   padding: 5px 8px;
-  border-radius: 5px;
+  border-radius: 8px;
   border: 0.5px solid rgba(255, 255, 255, 0.185);
-  margin: 10px;
-  box-shadow: 2px 2px 25px rgba(0, 0, 0, 0.199);
+  margin: 25px 10px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.295);
   display: flex;
   flex-direction: column;
   justify-content: start;
@@ -39,9 +43,21 @@ ul {
   width: 100%;
   object-fit: cover;
   height: auto;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.295);
 }
 .step_description {
   margin-left: 8px;
+  font-size: 14px;
+}
+strong {
+  font-size: 16px;
+}
+
+.step_image_big {
+  margin-left: 15%;
+  width: 75%;
+  height: 140px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.295);
 }
 
 @media screen and (max-width: 786px) {
@@ -52,4 +68,11 @@ ul {
   .footer {
     text-align: center;
   }
+}
+
+footer {
+  box-shadow: -5px 0px 10px #0682e7cb;
+  position: fixed;
+  bottom: 0;
+  width: 100vw;
 }

@@ -35,7 +35,7 @@
     <div class="error-panel mt-5">
       <img class="error-image" src="./smile_face.svg" />
       <p class="error-message">
-        Oh No! You ran into a problem. Follow these steps:-
+        Don't worry! Follow these simple steps to fix it
       </p>
     </div>
 
@@ -52,25 +52,23 @@
           <span v-html="step.description"></span>
         </div>
         <img
-          class="mt-2 p-1 step_image"
+          class="mt-2 p-1 "
           v-if="step.imageUrl"
           :src="step.imageUrl"
+          :class="step.imageClass?'step_image_big':'step_image'"
         />
 
         <a
           v-if="step.deeplink"
-          class="mt-3 m-1 p-1 btn-primary text-center"
-          style="text-decoration: none;color:white;"
+          class="mt-3 m-1 p-1 text-center"
+          style="background:#1da1f2;box-shadow:0px 5px 5px rgba(0,0,0,0.4);text-decoration: none;color:white;border-radius:8px;"
           :href="step.deeplink"
-          >Do it Now</a
+          ><strong>Do it Now</strong></a
         >
       </li>
     </ul>
 
-    <footer
-      class="footer bg-primary"
-      style="box-shadow:-5px 0px 10px #0682e7cb; position:fixed; bottom:0; width:100vw;"
-    >
+    <footer class="footer bg-primary">
       <a class="navbar-brand text-white mx-5 p-2" href="#">
         Linq Copyright © 2019 | All Rights Reserved
       </a>
@@ -86,29 +84,30 @@
               steps: [
                 {
                   description:
-                    "Allow permission to <em><strong>Display pop-up windows while running in the background</em></strong> and then select <em><strong>Accept</em></strong>",
+                    "-&nbsp;Allow permission to <strong>Display pop-up windows while running in the background</strong> and then select <strong>Accept</strong>",
                   imageUrl: "./xiaomi1.png",
                   deeplink:
                     "https://dl.mylinq.in/inappmsg?type=28&action=xiaomi_popup"
                 },
                 {
                   description:
-                    "Allow Linq permission to <em><strong>Display over other apps</em></strong>. Change it from off(<img src='./off.png' height='23'>) to on(<img src='./on.png' height='23'>)",
+                    "-&nbsp;Allow Linq permission to <strong>Display over other apps</strong>. Change it from off (<img src='./off.png' height='23'>) to on (<img src='./on.png' height='23'>)",
                   imageUrl: false,
                   deeplink:
-                    "https://dl.mylinq.in/inappmsg?type=28&action=draw_over_apps"
+                    "-&nbsp;https://dl.mylinq.in/inappmsg?type=28&action=draw_over_apps"
                 },
                 {
                   description:
-                    "Allow <em><strong>Auto Start</em></strong> for Linq to run in background automatically. Allow Linq permission to display over other apps Change it from off(<img src='./off.png' height='23'>) to on(<img src='./on.png' height='23'>) ",
+                    "-&nbsp;Allow <strong>Auto Start</strong> for Linq to run in background automatically. Allow Linq permission to display over other apps Change it from off (<img src='./off.png' height='23'>) to on (<img src='./on.png' height='23'>) ",
                   imageUrl: false,
                   deeplink:
                     "https://dl.mylinq.in/inappmsg?type=28&action=auto_start"
                 },
                 {
                   description:
-                    "Save Linq from stopping due to <em><strong>Battery Optimization</em></strong> <br/>Tap on <em><strong>Not allowed</em></strong><br/>Select <em><strong>All apps</em></strong><br/>In search bar, type <em><strong>Linq</em></strong> or, scroll down to <em><strong>Linq Biz</em></strong><br/>Tap on <em><strong>Linq Biz</em></strong><br/>Select <em><strong>Don’t Optimize</em></strong> and tap <em><strong>Done</em></strong>",
+                    "-&nbsp;Save Linq from stopping due to <strong>Battery Optimization</strong> <br/>-&nbsp; Tap on <strong>Not allowed</strong><br/>-&nbsp; Select <strong>All apps</strong><br/>-&nbsp; In search bar, type <strong>Linq</strong> or, scroll down to <strong>Linq Biz</strong><br/>-&nbsp; Tap on <strong>Linq Biz</strong><br/>-&nbsp; Select <strong>Don’t Optimize</strong> and tap <strong>Done</strong>",
                   imageUrl: "./xiaomi2.png",
+                  imageClass: "big",
                   deeplink:
                     "https://dl.mylinq.in/inappmsg?type=28&action=battery_optimization"
                 }
@@ -118,13 +117,13 @@
               steps: [
                 {
                   description:
-                    "Allow Linq permission to <em><strong>Display over other apps</em></strong> <br/>Change it from off(<img src='./off.png' height='23'>) to on(<img src='./on.png' height='23'>)",
+                    "-&nbsp;Allow Linq permission to <strong>Display over other apps</strong> <br/>-&nbsp; Change it from off (<img src='./off.png' height='23'>) to on (<img src='./on.png' height='23'>)",
                   imageUrl: false,
                   deeplink: false
                 },
                 {
                   description:
-                    "Save Linq from stopping due to <em><strong>Optimise Battery Usage</em></strong><br/>Tap on <em><strong>Apps not optimised</em></strong><br/>Select <em><strong>All apps</em></strong><br/>In search bar, type <em><strong>Linq</em></strong> or, scroll down to <em><strong>Linq Biz</em></strong><br/><img style='margin-left:10%;' width='80%' height='70' src='./inline.png'><br/>Change it from on(<img src='./on.png' height='23'>) to off(<img src='./off.png' height='23'>)",
+                    "-&nbsp;Save Linq from stopping due to <strong>Optimise Battery Usage</strong><br/>-&nbsp; Tap on <strong>Apps not optimised</strong><br/>-&nbsp; Select <strong>All apps</strong><br/>-&nbsp; In search bar, type <strong>Linq</strong> or, scroll down to <strong>Linq Biz</strong><br/> <img style='margin-left:10%;box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.295);' width='80%' height='70' src='./inline.png'><br/>-&nbsp; Change it from on (<img src='./on.png' height='23'>) to off (<img src='./off.png' height='23'>)",
                   imageUrl: false,
                   deeplink: false
                 }
@@ -134,22 +133,23 @@
               steps: [
                 {
                   description:
-                    "Allow Linq permission to <em><strong>Display over other apps</em></strong><br/>Change it from off(<img src='./off.png' height='23'>) to on(<img src='./on.png' height='23'>)",
+                    "-&nbsp;Allow Linq permission to <strong>Display over other apps</strong><br/>-&nbsp; Change it from off (<img src='./off.png' height='23'>) to on (<img src='./on.png' height='23'>)",
                   imageUrl: false,
                   deeplink:
                     "https://dl.mylinq.in/inappmsg?type=28&action=draw_over_apps"
                 },
                 {
                   description:
-                    "Allow <em><strong>Auto Start</em></strong> for Linq to run in background automatically<br/>Allow Linq permission to display over other apps<br/>Change it from off(<img src='./off.png' height='23'>) to on(<img src='./on.png' height='23'>)",
+                    "-&nbsp;Allow <strong>Auto Start</strong> for Linq to run in background automatically<br/>-&nbsp; Allow Linq permission to display over other apps<br/>-&nbsp; Change it from off (<img src='./off.png' height='23'>) to on (<img src='./on.png' height='23'>)",
                   imageUrl: false,
                   deeplink:
                     "https://dl.mylinq.in/inappmsg?type=28&action=auto_start"
                 },
                 {
                   description:
-                    "Save Linq from stopping due to <em><strong>Battery Optimization</em></strong><br/>Tap on <em><strong>Not allowed</em></strong><br/>Select <em><strong>All apps</em></strong><br/>In search bar, type <em><strong>Linq</em></strong> or, scroll down to <em><strong>Linq Biz</em></strong><br/><img style='margin-left:10%;' width='80%' height='70' src='./inline.png'><br/>Tap on <em><strong>Linq Biz</em></strong><br/>Select <em><strong>Don’t allow</em></strong> and tap <em><strong>OK / Done</em></strong>",
+                    "-&nbsp;Save Linq from stopping due to <strong>Battery Optimization</strong><br/>-&nbsp; Tap on <strong>Not allowed</strong><br/>-&nbsp; Select <strong>All apps</strong><br/>-&nbsp; In search bar, type <strong>Linq</strong> or, scroll down to <strong>Linq Biz</strong><br/> <img style='margin-left:10%;box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.295);' width='80%' height='70' src='./inline.png'><br/>-&nbsp; Tap on <strong>Linq Biz</strong><br/>-&nbsp; Select <strong>Don’t allow</strong> and tap <strong>OK / Done</strong>",
                   imageUrl: "./oppo1.png",
+                  imageClass: "big",
                   deeplink:
                     "https://dl.mylinq.in/inappmsg?type=28&action=battery_optimization"
                 }
