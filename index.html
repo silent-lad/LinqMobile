@@ -15,6 +15,7 @@
       integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
       crossorigin="anonymous"
     />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <link rel="stylesheet" href="style.css" />
 
     <title>LinQ</title>
@@ -38,27 +39,28 @@
       </p>
     </div>
 
-    <ul class="step-list ">
-      <li class="step ">
-        <div class="step_num">Step 1</div>
-        <div class="step_description">Go to your Settings and press ...</div>
-        <img class="step_image" src="./realme.jpg" />
-      </li>
-      <li class="step ">
-        <div class="step_num">Step 2</div>
-        <div class="step_description">After pressing ... Enjoy...</div>
-      </li>
-      <li class="step ">
-        <div class="step_num">Step 3</div>
-        <div class="step_description">
-          If you are still facing problems press ...
+    <ul class="step-list" id="app">
+      <li
+        v-if="currentBrand!=''"
+        class="step"
+        v-for="step in brands[currentBrand].steps"
+      >
+        <div class="step_num">
+          Step {{brands[currentBrand].steps.indexOf(step)+1}}
         </div>
-      </li>
-      <li class="step ">
-        <div class="step_num">Step 4</div>
         <div class="step_description">
-          Or press ... and ... simuntaneously. Happy Surfing!
+          <span v-html="step.description"></span>
         </div>
+        <img
+          class="mt-2 p-1 step_image"
+          v-if="step.imageUrl"
+          :src="step.imageUrl"
+        />
+        <button class="mt-2 p-1 btn-primary">
+          <a style="text-decoration: none;color:white;" :href="step.deeplink"
+            >Do it Now</a
+          >
+        </button>
       </li>
     </ul>
 
@@ -71,29 +73,53 @@
       </a>
     </footer>
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script>
-      //   let params = new URL(document.location).searchParams;
-      //   let name = params.get("name");
-
-      function getQueryStringValue(key) {
-        return decodeURIComponent(
-          window.location.search.replace(
-            new RegExp(
-              "^(?:.*[&\\?]" +
-                encodeURIComponent(key).replace(/[\.\+\*]/g, "\\$&") +
-                "(?:\\=([^&]*))?)?.*$",
-              "i"
-            ),
-            "$1"
-          )
-        );
-      }
-
-      // Would write the value of the QueryString-variable called name to the console
-      console.log(getQueryStringValue("name"));
-      //   console.log(name);
+      var app = new Vue({
+        el: "#app",
+        data: {
+          currentBrand: "",
+          brands: {
+            xiaomi: {
+              steps: [
+                {
+                  description:
+                    "Allow permission to “Display pop-up windows while running in the background” and then select “Accept”",
+                  imageUrl: "./xiaomi1.png",
+                  deeplink:
+                    "https://dl.mylinq.in/inappmsg?type=28&action=xiaomi_popup"
+                },
+                {
+                  description: "Oh no",
+                  imageUrl: false
+                },
+                {
+                  description: 'Yes <img src="on.png" height="25">',
+                  imageUrl: false
+                }
+              ]
+            },
+            oppo: {}
+          }
+        },
+        methods: {
+          getQueryStringValue: function(key) {
+            return decodeURIComponent(
+              window.location.search.replace(
+                new RegExp(
+                  "^(?:.*[&\\?]" +
+                    encodeURIComponent(key).replace(/[\.\+\*]/g, "\\$&") +
+                    "(?:\\=([^&]*))?)?.*$",
+                  "i"
+                ),
+                "$1"
+              )
+            );
+          }
+        },
+        created() {
+          this.currentBrand = this.getQueryStringValue("brand").toLowercase();
+        }
+      });
     </script>
     <script
       src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
