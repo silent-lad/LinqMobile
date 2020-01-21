@@ -23,64 +23,71 @@
 
   <body>
     <!-- Just an image -->
-    <nav
-      class="navbar navbar-light bg-white"
-      style="box-shadow:2px 0px 10px #00000025;position:fixed;width:100vw;"
-    >
-      <a class="navbar-brand" href="#">
-        <img src="./ic_linq_logo.svg" width="75" height="20" alt="" />
-      </a>
-    </nav>
-    <br />
-    <div class="error-panel mt-5">
-      <img class="error-image" src="./smile_face.svg" />
-      <p class="error-message">
-        Don't worry! Here are some simple ways to fix it
-      </p>
-    </div>
-
-    <ul class="step-list" id="app">
-      <li
-        v-if="currentBrand!=''"
-        class="step"
-        v-for="step in brands[currentBrand].steps"
+    <span id="app">
+      <nav
+        class="navbar navbar-light bg-white"
+        style="box-shadow:2px 0px 10px #00000025;position:fixed;width:100vw;"
       >
-        <!-- <div class="step_num">
+        <a class="navbar-brand" href="#">
+          <img src="./ic_linq_logo.svg" width="75" height="20" alt="" />
+        </a>
+      </nav>
+      <br />
+      <div class="error-panel mt-5">
+        <img class="error-image" src="./smile_face.svg" />
+        <p class="error-message">
+          Don't worry! Here are some simple ways to fix it
+        </p>
+      </div>
+
+      <ul class="step-list">
+        <li
+          v-if="currentBrand!=''"
+          class="step"
+          v-for="step in brands[currentBrand].steps"
+        >
+          <!-- <div class="step_num">
           Step {{brands[currentBrand].steps.indexOf(step)+1}}
         </div> -->
-        <div class="step_description">
-          <a :href="step.deeplink" class="titleLink"
-            ><span v-html="step.descriptionTitle"></span
-          ></a>
-          <span v-for="point in step.description"
-            ><br /><span v-html="point"></span
-          ></span>
-        </div>
-        <img
-          class="mt-2"
-          v-if="step.imageUrl"
-          :src="step.imageUrl"
-          :class="step.imageClass?'step_image_big':'step_image'"
-        />
+          <div class="step_description">
+            <a :href="step.deeplink" class="titleLink"
+              ><span v-html="step.descriptionTitle"></span
+            ></a>
+            <span v-for="point in step.description"
+              ><br /><span v-html="point"></span
+            ></span>
+          </div>
+          <img
+            class="mt-2"
+            v-if="step.imageUrl"
+            :src="step.imageUrl"
+            :class="step.imageClass?'step_image_big':'step_image'"
+          />
 
-        <a
-          v-if="step.deeplink"
-          class="mt-3 m-1 p-1 text-center"
-          style="background:#1da1f2;box-shadow:0px 5px 5px rgba(0,0,0,0.4);text-decoration: none;color:white;border-radius:8px;"
-          :href="step.deeplink"
-          ><strong>Do it Now</strong></a
-        >
-      </li>
-    </ul>
+          <a
+            v-if="step.deeplink"
+            class="mt-3 m-1 p-1 text-center"
+            style="background:#1da1f2;box-shadow:0px 5px 5px rgba(0,0,0,0.4);text-decoration: none;color:white;border-radius:8px;"
+            :href="step.deeplink"
+            ><strong>Do it Now</strong></a
+          >
+        </li>
+      </ul>
 
-    <h5 class="or_whatsapp text-center">
-      <span>OR</span>
-    </h5>
+      <h5 class="or_whatsapp text-center">
+        <span>OR</span>
+      </h5>
 
-    <button class="btn mt-3 mb-5 py-2 px-5 text-center whatsapp_button">
-      <img src="./whatsapp.png" height="25" width="25" alt="" class="mr-2" />
-      Chat on WhatsApp
-    </button>
+      <!-- <a style="text-decoration: none;" :href="whatsappUrl"> -->
+      <button
+        @click="sendWhatsappMessage"
+        class="btn mt-3 mb-5 py-2 px-5 text-center whatsapp_button"
+      >
+        <img src="./whatsapp.png" height="25" width="25" alt="" class="mr-2" />
+        Chat on WhatsApp
+      </button>
+      <!-- </a> -->
+    </span>
 
     <footer class="footer bg-primary">
       <a class="navbar-brand text-white mx-5 p-2" href="#">
@@ -91,8 +98,10 @@
     <script>
       var app = new Vue({
         el: "#app",
+
         data: {
           currentBrand: "",
+          brandName: "",
           brands: {
             xiaomi: {
               steps: [
@@ -151,32 +160,7 @@
               steps: [
                 {
                   descriptionTitle:
-                    "Allow <strong>Display over other apps</strong>",
-                  description: [
-                    "-&nbsp; Change off (<img src='./off.png' height='23'>) to on (<img src='./on.png' height='23'>)"
-                  ],
-                  imageUrl: false,
-                  deeplink: false
-                },
-                {
-                  descriptionTitle:
-                    "Disable <strong>Optimise Battery Usage</strong>",
-                  description: [
-                    "-&nbsp; Click on <strong>Apps not optimised</strong> and select <strong>All apps</strong>",
-                    "-&nbsp; Search for <strong>Linq Biz</strong> and click on it ",
-                    "<img class='inline_image' src='./inline.png'>",
-                    "-&nbsp; Change on (<img src='./on.png' height='23'>) to off (<img src='./off.png' height='23'>)"
-                  ],
-                  imageUrl: false,
-                  deeplink: false
-                }
-              ]
-            },
-            oppo: {
-              steps: [
-                {
-                  descriptionTitle:
-                    "Allow <strong>Display over other apps</strong>",
+                    "Go to <strong>Display over other apps</strong>",
                   description: [
                     "-&nbsp; Change off (<img src='./off.png' height='23'>) to on (<img src='./on.png' height='23'>)"
                   ],
@@ -185,7 +169,37 @@
                     "https://dl.mylinq.in/inappmsg?type=28&action=draw_over_apps"
                 },
                 {
-                  descriptionTitle: "Allow <strong>Auto Start</strong> ",
+                  descriptionTitle:
+                    "Go to <strong>Optimise Battery Usage</strong>",
+                  description: [
+                    "-&nbsp; Click on <strong>Apps not optimised</strong>",
+                    "<img class='inline_image' src='./samsung1.jpg'>",
+                    "-&nbsp; Select <strong>All apps</strong>",
+                    "<img class='inline_image' src='./samsung2.jpg'>",
+                    "-&nbsp; Search for <strong>Linq Biz</strong>",
+                    "<img class='inline_image' src='./samsung3.jpg'>",
+                    "-&nbsp; Change on (<img src='./on.png' height='23'>) to off (<img src='./off.png' height='23'>)"
+                  ],
+                  imageUrl: false,
+                  deeplink:
+                    "https://dl.mylinq.in/inappmsg?type=28&action=battery_optimization"
+                }
+              ]
+            },
+            oppo: {
+              steps: [
+                {
+                  descriptionTitle:
+                    "Go to <strong>Display over other apps</strong>",
+                  description: [
+                    "-&nbsp; Change off (<img src='./off.png' height='23'>) to on (<img src='./on.png' height='23'>)"
+                  ],
+                  imageUrl: false,
+                  deeplink:
+                    "https://dl.mylinq.in/inappmsg?type=28&action=draw_over_apps"
+                },
+                {
+                  descriptionTitle: "Go to <strong>Auto Start</strong> ",
                   description: [
                     "-&nbsp; Change off (<img src='./off.png' height='23'>) to on (<img src='./on.png' height='23'>)"
                   ],
@@ -195,9 +209,12 @@
                 },
                 {
                   descriptionTitle:
-                    "Disable <strong>Battery Optimization</strong>",
+                    "Go to <strong>Battery Optimization</strong>",
                   description: [
-                    "-&nbsp; Click on <strong>Not allowed</strong> and select <strong>All apps</strong>",
+                    "-&nbsp; Click on <strong>Not allowed</strong>",
+                    "<img class='inline_image' src='./oppo3.jpg'>",
+                    "-&nbsp; Select <strong>All apps</strong>",
+                    "<img class='inline_image' src='./oppo2.jpg'>",
                     "-&nbsp; Search for <strong>Linq Biz</strong> and click on it ",
                     "<img class='inline_image' src='./inline.png'>",
                     "-&nbsp; Select <strong>Don’t allow</strong> and click <strong>OK / Done</strong>",
@@ -225,10 +242,16 @@
                 "$1"
               )
             );
+          },
+          sendWhatsappMessage: function() {
+            window.location.href = `https://api.whatsapp.com/send?phone=917836811111&text=Help!%20Auto%20Reply%20stopped%20working%20on%20my%20${this.brandName
+              .charAt(0)
+              .toUpperCase() + this.brandName.slice(1)}%20phone%20%F0%9F%99%81`;
           }
         },
         created() {
           this.currentBrand = this.getQueryStringValue("brand").toLowerCase();
+          this.brandName = this.currentBrand;
           switch (this.currentBrand) {
             case "vivo":
               this.currentBrand = "oppo";
