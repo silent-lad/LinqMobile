@@ -49,13 +49,15 @@
           Step {{brands[currentBrand].steps.indexOf(step)+1}}
         </div> -->
         <div class="step_description">
-          <!-- <span class="step_num"> -->
-          <!-- {{brands[currentBrand].steps.indexOf(step)+1}}) -->
-          <!-- </span> -->
-          <span v-html="step.description"></span>
+          <a :href="step.deeplink" class="titleLink"
+            ><span v-html="step.descriptionTitle"></span
+          ></a>
+          <span v-for="point in step.description"
+            ><br /><span v-html="point"></span
+          ></span>
         </div>
         <img
-          class="mt-2 p-1 "
+          class="mt-2"
           v-if="step.imageUrl"
           :src="step.imageUrl"
           :class="step.imageClass?'step_image_big':'step_image'"
@@ -70,6 +72,15 @@
         >
       </li>
     </ul>
+
+    <h5 class="or_whatsapp text-center">
+      <span>OR</span>
+    </h5>
+
+    <button class="btn mt-3 mb-5 py-2 px-5 text-center whatsapp_button">
+      <img src="./whatsapp.png" height="25" width="25" alt="" class="mr-2" />
+      Chat on WhatsApp
+    </button>
 
     <footer class="footer bg-primary">
       <a class="navbar-brand text-white mx-5 p-2" href="#">
@@ -86,30 +97,50 @@
             xiaomi: {
               steps: [
                 {
-                  description:
-                    "Allow <strong>Display pop-up windows while running in the background</strong><br/>-&nbsp; Tap on <br/> <img style='margin-left:10%;box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.295);margin-bottom:10px;margin-top:10px;' width='80%;' height='70' src='./xiaomi1.png'><br/>-&nbsp;Select <strong>Accept</strong>",
+                  descriptionTitle: "Go to <strong>Linq Biz settings</strong>",
+                  // "Allow <strong >Display pop-up windows while running in the background</strong>",
+                  description: [
+                    "-&nbsp; Click on ",
+                    "<img class='inline_image' src='./xiaomi1.jpg'>",
+                    "-&nbsp;Select <strong>Accept</strong>",
+                    "<img class='inline_image' src='./xiaomi3.png'>"
+                  ],
                   imageUrl: false,
                   deeplink:
                     "https://dl.mylinq.in/inappmsg?type=28&action=xiaomi_popup"
                 },
                 {
-                  description:
-                    "Allow <strong>Display over other apps</strong>.<br/>-&nbsp; Change off (<img src='./off.png' height='23'>) to on (<img src='./on.png' height='23'>)",
+                  descriptionTitle:
+                    "Go to <strong>Display over other apps</strong>",
+                  description: [
+                    "-&nbsp; Change off (<img src='./off.png' height='23'>) to on (<img src='./on.png' height='23'>)"
+                  ],
                   imageUrl: false,
                   deeplink:
                     "https://dl.mylinq.in/inappmsg?type=28&action=draw_over_apps"
                 },
                 {
-                  description:
-                    "Allow <strong>Auto Start</strong><br/>-&nbsp;Change off (<img src='./off.png' height='23'>) to on (<img src='./on.png' height='23'>) ",
+                  descriptionTitle: "Go to <strong>Auto Start</strong>",
+                  description: [
+                    "-&nbsp;Change off (<img src='./off.png' height='23'>) to on (<img src='./on.png' height='23'>) "
+                  ],
                   imageUrl: false,
                   deeplink:
                     "https://dl.mylinq.in/inappmsg?type=28&action=auto_start"
                 },
                 {
-                  description:
-                    "Disable <strong>Battery Optimization</strong> <br/>-&nbsp; Tap on <strong>Not allowed</strong> and select <strong>All apps</strong><br/>-&nbsp; Search for <strong>Linq Biz</strong> and tap on it <img style='margin-left:10%;box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.295);margin-bottom:10px;margin-top:10px;' width='80%' height='70' src='./inline.png'><br/>-&nbsp; Select <strong>Don’t Optimize</strong> and tap <strong>Done</strong>",
-                  imageUrl: "./xiaomi2.png",
+                  descriptionTitle:
+                    "Go to <strong>Battery Optimization</strong>",
+                  description: [
+                    "-&nbsp; Click on <strong>Not optimised</strong>",
+                    "<img class='inline_image' src='./xiaomi4.jpg'>",
+                    "-&nbsp;Select <strong>All apps</strong>",
+                    "<img class='inline_image' src='./xiaomi5.png'>",
+                    "-&nbsp; Search for <strong>Linq Biz</strong> and click on it",
+                    "-&nbsp; Select <strong>Don’t Optimize</strong> and click <strong>Done</strong>",
+                    "<img class='inline_image' src='./xiaomi6.png'>"
+                  ],
+                  imageUrl: false,
                   imageClass: "big",
                   deeplink:
                     "https://dl.mylinq.in/inappmsg?type=28&action=battery_optimization"
@@ -119,14 +150,23 @@
             samsung: {
               steps: [
                 {
-                  description:
-                    "Allow <strong>Display over other apps</strong> <br/>-&nbsp; Change off (<img src='./off.png' height='23'>) to on (<img src='./on.png' height='23'>)",
+                  descriptionTitle:
+                    "Allow <strong>Display over other apps</strong>",
+                  description: [
+                    "-&nbsp; Change off (<img src='./off.png' height='23'>) to on (<img src='./on.png' height='23'>)"
+                  ],
                   imageUrl: false,
                   deeplink: false
                 },
                 {
-                  description:
-                    "Disable <strong>Optimise Battery Usage</strong><br/>-&nbsp; Tap on <strong>Apps not optimised</strong> and select <strong>All apps</strong>-&nbsp; Search for <strong>Linq Biz</strong> and tap on it <img style='margin-left:10%;box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.295);margin-bottom:10px;margin-top:10px;' width='80%' height='70' src='./inline.png'><br/>-&nbsp; Change on (<img src='./on.png' height='23'>) to off (<img src='./off.png' height='23'>)",
+                  descriptionTitle:
+                    "Disable <strong>Optimise Battery Usage</strong>",
+                  description: [
+                    "-&nbsp; Click on <strong>Apps not optimised</strong> and select <strong>All apps</strong>",
+                    "-&nbsp; Search for <strong>Linq Biz</strong> and click on it ",
+                    "<img class='inline_image' src='./inline.png'>",
+                    "-&nbsp; Change on (<img src='./on.png' height='23'>) to off (<img src='./off.png' height='23'>)"
+                  ],
                   imageUrl: false,
                   deeplink: false
                 }
@@ -135,23 +175,35 @@
             oppo: {
               steps: [
                 {
-                  description:
-                    "Allow <strong>Display over other apps</strong><br/>-&nbsp; Change off (<img src='./off.png' height='23'>) to on (<img src='./on.png' height='23'>)",
+                  descriptionTitle:
+                    "Allow <strong>Display over other apps</strong>",
+                  description: [
+                    "-&nbsp; Change off (<img src='./off.png' height='23'>) to on (<img src='./on.png' height='23'>)"
+                  ],
                   imageUrl: false,
                   deeplink:
                     "https://dl.mylinq.in/inappmsg?type=28&action=draw_over_apps"
                 },
                 {
-                  description:
-                    "Allow <strong>Auto Start</strong> <br/>-&nbsp; Change off (<img src='./off.png' height='23'>) to on (<img src='./on.png' height='23'>)",
+                  descriptionTitle: "Allow <strong>Auto Start</strong> ",
+                  description: [
+                    "-&nbsp; Change off (<img src='./off.png' height='23'>) to on (<img src='./on.png' height='23'>)"
+                  ],
                   imageUrl: false,
                   deeplink:
                     "https://dl.mylinq.in/inappmsg?type=28&action=auto_start"
                 },
                 {
-                  description:
-                    "Disable <strong>Battery Optimization</strong><br/>-&nbsp; Tap on <strong>Not allowed</strong> and select <strong>All apps</strong><br/>-&nbsp; Search for <strong>Linq Biz</strong> and tap on it <img style='margin-left:10%;box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.295);margin-bottom:10px;margin-top:10px;' width='80%' height='70' src='./inline.png'><br/>-&nbsp; Select <strong>Don’t allow</strong> and tap <strong>OK / Done</strong>",
-                  imageUrl: "./oppo1.png",
+                  descriptionTitle:
+                    "Disable <strong>Battery Optimization</strong>",
+                  description: [
+                    "-&nbsp; Click on <strong>Not allowed</strong> and select <strong>All apps</strong>",
+                    "-&nbsp; Search for <strong>Linq Biz</strong> and click on it ",
+                    "<img class='inline_image' src='./inline.png'>",
+                    "-&nbsp; Select <strong>Don’t allow</strong> and click <strong>OK / Done</strong>",
+                    "<img class='inline_image' src='./oppo1.png'>"
+                  ],
+                  imageUrl: false,
                   imageClass: "big",
                   deeplink:
                     "https://dl.mylinq.in/inappmsg?type=28&action=battery_optimization"
